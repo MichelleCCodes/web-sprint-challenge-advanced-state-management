@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import axios from 'axios';
+
+import Smurf from './Smurf'; 
 // import {getSmurfs} from '../actions';
 
 function SmurfDisplay() {
@@ -8,14 +10,17 @@ function SmurfDisplay() {
 useEffect(()=> {
 axios.get('http://localhost:3333/smurfs')
 .then(res=>{
-    console.log(res.data);
+    console.log(res);
   })
   .catch(
           console.log('error :(')
   )
 },[])
         return(
-                <div></div>
+                <div className="smurfdisplay">
+                        {/* map over smurf component */}
+                <Smurf/>
+                </div>
         )
       };
 

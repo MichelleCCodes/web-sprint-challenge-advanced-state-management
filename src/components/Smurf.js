@@ -5,7 +5,9 @@ function Smurf(props) {
 
         return(
         <div data-testid="smurf" className="card">
-        <h1></h1>
+        <h1>Pleasure to introduce {smurf.name}</h1>
+        <p>AKA: {smurf.nickname}, the {smurf.position}</p>
+        <p>{smurf.description}</p>
         </div>
         );
 }
