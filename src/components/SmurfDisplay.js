@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import axios from 'axios';
+// import {getSmurfs} from '../actions';
 
-function SmurfDisplay () {
-        return(<div>
-            
-        </div>)
-}
+function SmurfDisplay() {
+
+useEffect(()=> {
+axios.get('http://localhost:3333/smurfs')
+.then(res=>{
+    console.log(res.data);
+  })
+  .catch(
+          console.log('error :(')
+  )
+},[])
+        return(
+                <div></div>
+        )
+      };
 
 export default SmurfDisplay;
 
@@ -14,3 +27,9 @@ export default SmurfDisplay;
 //3. Fetch all smurfs when the component first mounts.
 //4. Render loading text or graphic if the application is currently loading.
 //5. Render a list of all Smurfs using the Smurf component if the application is not currently loading.
+
+// componentDidMount() {
+//   axios.get('http://localhost:3333/smurfs').then(res=>{
+//     console.log(res);
+//   })
+// }

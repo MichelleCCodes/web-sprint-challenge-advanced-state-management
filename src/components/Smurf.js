@@ -3,8 +3,11 @@ import React from 'react';
 function Smurf(props) {
         const { smurf } = props;
 
-        return(<div data-testid="smurf" className="card">
-        </div>);
+        return(
+        <div data-testid="smurf" className="card">
+        <h1></h1>
+        </div>
+        );
 }
 
 export default Smurf;
