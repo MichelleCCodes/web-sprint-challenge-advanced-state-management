@@ -1,14 +1,15 @@
 import React from 'react';
 
 function Smurf(props) {
-        const { smurf } = props;
-
+console.log(props)
+const {smurf} = props
         return(
         <div data-testid="smurf" className="card">
         <h1>Pleasure to introduce {smurf.name}</h1>
         <p>AKA: {smurf.nickname}, the {smurf.position}</p>
         <p>{smurf.description}</p>
         </div>
+        // null
         );
 }
 

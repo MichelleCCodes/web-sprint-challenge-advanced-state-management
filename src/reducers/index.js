@@ -3,7 +3,7 @@ import { FETCH_SMURFS_START, FETCH_SMURFS_FAIL, FETCH_SMURFS_SUCCESS, ADD_SMURF 
 export const initialState = {
     isFetching: false, 
     error: '',
-    smurfs: []
+    smurfs: [],
 }
 
 const reducer = (state=initialState, action)=>{
@@ -20,7 +20,7 @@ const reducer = (state=initialState, action)=>{
                 ...state, 
                 isFetching: false, 
                 error: '', 
-                smurfs: [...state.smurfs, action.payload]
+                smurfs: action.payload
             })
         case(FETCH_SMURFS_FAIL):
         return({
