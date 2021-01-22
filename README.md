@@ -23,10 +23,19 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. What problem does the context API help solve?
+Context API allows you to create a Provider hook for a component tree which you could use to pass state easily into branches throughout that component. 
+
 2. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+In Redux, actions are objects that allow a seamless transfer of data between the store and the reducers. When reducers are called, they will find the type of action that is begin called and will handle the data and change the state the way it needs to. The store in redux allows us to access the reducer from anywhere using the connect hook. The store can be thought of as the single source of truth because it holds the initial shape of the state, where state is immutable inside the store. 
+
 3. What is the difference between Application state and Component state? When would be a good time to use one over the other?
+Application state is a global state and would be great is components on different branches throughout the application needs access to states. Component state is specific to a single component tree and is optimal to use when the changing piece of state is only contained within a component tree and not anywhere else. 
+
 4. Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+Redux-thunk allows us to chain action events together so that it can do multiple things, unlike action-creators that only have one output.
+
 5. What is your favorite state management system you've learned and this sprint? Please explain why!
+My favorite state management system is useReducer. It allows for global state management like redux, without the large amount of crazy syntax. 
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade. 
 

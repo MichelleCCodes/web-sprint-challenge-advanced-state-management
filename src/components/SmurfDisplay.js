@@ -1,11 +1,9 @@
 import React from 'react';
 
-export class SmurfDisplay extends React.Component {
-    render() {
+function SmurfDisplay () {
         return(<div>
             
         </div>)
-    }
 }
 
 export default SmurfDisplay;
