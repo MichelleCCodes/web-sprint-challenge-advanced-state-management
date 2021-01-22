@@ -2,8 +2,8 @@ import { FETCH_SMURFS_START, FETCH_SMURFS_FAIL, FETCH_SMURFS_SUCCESS, ADD_SMURF 
 
 export const initialState = {
     isFetching: false, 
-    error: 'you have an error ):',
-    smurfs: [], 
+    error: '',
+    smurfs: []
 }
 
 const reducer = (state=initialState, action)=>{
@@ -20,7 +20,7 @@ const reducer = (state=initialState, action)=>{
                 ...state, 
                 isFetching: false, 
                 error: '', 
-                smurfs: action.payload
+                smurfs: [...state.smurfs, action.payload]
             })
         case(FETCH_SMURFS_FAIL):
         return({
@@ -47,3 +47,5 @@ export default reducer;
 //      - The adding a smurf to the smurf list when added into payload
 //      - Setting Error Text
 //      - Any other state changes you see as necessary
+
+// NEED TO ADD CASE FOR ADDSMURFS

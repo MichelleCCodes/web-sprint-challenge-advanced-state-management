@@ -1,30 +1,43 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import axios from 'axios';
 
-import Smurf from './Smurf'; 
-// import {getSmurfs} from '../actions';
+import Smurf from "./Smurf";
+import { getSmurfs } from "../actions";
 
-function SmurfDisplay() {
+const SmurfDisplay = ({ isFetching, error, smurfs, getSmurfs }) => {
 
-useEffect(()=> {
-axios.get('http://localhost:3333/smurfs')
-.then(res=>{
-    console.log(res);
-  })
-  .catch(
-          console.log('error :(')
-  )
-},[])
-        return(
-                <div className="smurfdisplay">
-                        {/* map over smurf component */}
-                <Smurf/>
-                </div>
-        )
-      };
+  useEffect(() => {
+    getSmurfs();
+  }, []);
 
-export default SmurfDisplay;
+  if (error) {
+    return <h2>We got an error:{error}</h2>;
+  }
+
+  if (isFetching) {
+    return <h2>Contacting the village for you...</h2>;
+  }
+
+  return (
+    <>
+      <div className="smurfdisplay">
+        {smurfs.map(smurf => {
+        return <Smurf key={smurf.id} smurf={smurf}/>;
+        })}
+        </div>
+    </>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    smurfs: state.smurfs,
+    isFetching: state.isFetching,
+    error: state.error,
+  };
+};
+
+export default connect(mapStateToProps, { getSmurfs })(SmurfDisplay);
 
 //Task List:
 //1. Import in all needed components and library methods.
