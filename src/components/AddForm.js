@@ -1,22 +1,46 @@
-import React from 'react';
+import React,{ useState } from 'react';
+import { connect } from 'react-redux'; 
+import { postSmurf } from '../actions'; 
 
-function AddForm () {
+const AddForm = (props) => {
+const {smurfs} = props
 
+//HELPER FUNCTIONS: 
+const onSubmit = evt => {
+    evt.preventDefault();
+    // postSmurf()
+}
+
+const onChange = (e) => {
+    console.log(postSmurf)
+    postSmurf(e.target.value);
+}
         return(<section>
             <h2>Add Smurf</h2>
             <form>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label><br/>
-                    <input onChange={null} name="name" id="name" />
+                    <input onChange={onChange} name="name" id="name" />
+
+                    <label htmlFor="position">Position:</label><br/>
+                    <input onChange={onChange} name="position" id="position" />
+
+                    <label htmlFor="description">Description:</label><br/>
+                    <input onChange={onChange} name="description" id="description" />
                 </div>
 
                 <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: </div>
-                <button>Submit Smurf</button>
+                <button onClick={onSubmit}>Submit Smurf</button>
             </form>
         </section>);
 }
 
-export default AddForm;
+const mapStateToProps = state => {
+    return{ 
+        smurfs: state.smurfs
+    }
+}
+export default connect( mapStateToProps, { postSmurf })(AddForm);
 
 //Task List:
 //1. Add in all necessary import components and library methods.
@@ -32,3 +56,6 @@ export default AddForm;
 //7. Ensure that the included alert code only displays when error text is passed in from redux.
 //4. DO NOT DELETE THE data-testid FIELD FROM THE ERROR ALERT! This is used for sprint grading.
 //8. Style as necessary.
+
+// create form values
+// create a handleSubmit that uses postSmurfs function

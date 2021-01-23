@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Smurf(props) {
-console.log(props)
 const {smurf} = props
         return(
         <div data-testid="smurf" className="card">
@@ -9,7 +8,6 @@ const {smurf} = props
         <p>AKA: {smurf.nickname}, the {smurf.position}</p>
         <p>{smurf.description}</p>
         </div>
-        // null
         );
 }
 

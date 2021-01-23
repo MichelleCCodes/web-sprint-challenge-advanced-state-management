@@ -1,4 +1,4 @@
-import { FETCH_SMURFS_START, FETCH_SMURFS_FAIL, FETCH_SMURFS_SUCCESS, ADD_SMURF } from '../actions'; 
+import { FETCH_SMURFS_START, FETCH_SMURFS_FAIL, FETCH_SMURFS_SUCCESS, POST_SMURF } from '../actions'; 
 
 export const initialState = {
     isFetching: false, 
@@ -28,6 +28,11 @@ const reducer = (state=initialState, action)=>{
             error: action.payload, 
             isFetching: false
         });
+        case(POST_SMURF):
+            return({
+                ...state, 
+                smurfs: [...state.smurfs, action.payload]
+            })
         default:
             return state;
     }
@@ -48,4 +53,3 @@ export default reducer;
 //      - Setting Error Text
 //      - Any other state changes you see as necessary
 
-// NEED TO ADD CASE FOR ADDSMURFS

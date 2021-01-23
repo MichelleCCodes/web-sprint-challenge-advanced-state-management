@@ -5,7 +5,6 @@ import Smurf from "./Smurf";
 import { getSmurfs } from "../actions";
 
 const SmurfDisplay = ({ isFetching, error, smurfs, getSmurfs }) => {
-console.log(smurfs)
   useEffect(() => {
     getSmurfs();
   }, []);
@@ -24,7 +23,6 @@ console.log(smurfs)
               {smurfs.map(smurf => (
                       <Smurf key={smurf.id} smurf={smurf}/>
               ))}
-        {/* <Smurf smurfs={smurfs}/>; */}
         </div>
     </>
   );

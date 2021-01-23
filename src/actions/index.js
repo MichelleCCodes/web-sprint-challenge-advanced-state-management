@@ -3,7 +3,7 @@ import axios from 'axios';
 export const FETCH_SMURFS_START = "FETCH_SMURFS_START"; 
 export const FETCH_SMURFS_FAIL = "FETCH_SMURFS_FAIL"; 
 export const FETCH_SMURFS_SUCCESS = "FETCH_SMURFS_SUCCESS"; 
-export const ADD_SMURF = "ADD_SMURF"; 
+export const POST_SMURF = "POST_SMURF"; 
 
 export const getSmurfs = () => dispatch => {
     dispatch({ type:FETCH_SMURFS_START});
@@ -17,8 +17,8 @@ export const getSmurfs = () => dispatch => {
         });
 }
 
-export const addSmurfs = (handleSubmit) => {
-return {type: ADD_SMURF, payload: handleSubmit};
+export const postSmurf = (name, position, description) => {
+return ({type: POST_SMURF, payload: {name, position, description}});
 }
 
 //Task List:
@@ -34,3 +34,5 @@ return {type: ADD_SMURF, payload: handleSubmit};
 //3. Add set error text action:
 //              - return action object setting error text
 //4. Any other actions you deem nessiary to complete application.
+
+//WHAT'S THE PAYLOAD FOR POSTING??
