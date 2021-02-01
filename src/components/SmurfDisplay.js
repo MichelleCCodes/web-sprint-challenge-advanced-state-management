@@ -9,8 +9,9 @@ const SmurfDisplay = ({ isFetching, error, smurfs, getSmurfs }) => {
     getSmurfs();
   }, []);
 
+  console.log(smurfs, 'before error')
   if (error) {
-    return <h2>We got an error:{error}</h2>;
+    return <h2>{error}</h2>;
   }
 
   if (isFetching) {
@@ -24,7 +25,7 @@ const SmurfDisplay = ({ isFetching, error, smurfs, getSmurfs }) => {
                       <Smurf key={smurf.id} smurf={smurf}/>
               ))}
         </div>
-    </>
+   </>
   );
 };
 

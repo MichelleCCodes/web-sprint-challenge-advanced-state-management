@@ -1,46 +1,75 @@
-import React,{ useState } from 'react';
-import { connect } from 'react-redux'; 
-import { postSmurf } from '../actions'; 
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { postSmurf } from "../actions";
+
+const initialInfo = {
+  id:'',
+  name: "",
+  position: "",
+  nickname: "",
+  description: "",
+};
 
 const AddForm = (props) => {
-const {smurfs} = props
+  const [smurfDetails, setSmurfDetails] = useState(initialInfo);
 
-//HELPER FUNCTIONS: 
-const onSubmit = evt => {
+  //HELPER FUNCTIONS:
+  const onSubmit = (evt) => {
     evt.preventDefault();
-    // postSmurf()
-}
+    props.postSmurf(smurfDetails);
+    console.log('from addForm', smurfDetails, initialInfo)
+    setSmurfDetails(initialInfo);
+  };
 
-const onChange = (e) => {
-    console.log(postSmurf)
-    postSmurf(e.target.value);
-}
-        return(<section>
-            <h2>Add Smurf</h2>
-            <form>
-                <div className="form-group">
-                    <label htmlFor="name">Name:</label><br/>
-                    <input onChange={onChange} name="name" id="name" />
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setSmurfDetails({
+      ...smurfDetails,
+      [name]: value,
+    });
+  };
 
-                    <label htmlFor="position">Position:</label><br/>
-                    <input onChange={onChange} name="position" id="position" />
+  return (
+    <section>
+      <h2>Add Smurf</h2>
+      <form>
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <br />
+          <input onChange={onChange} name="name" id="name" />
 
-                    <label htmlFor="description">Description:</label><br/>
-                    <input onChange={onChange} name="description" id="description" />
-                </div>
+          <label htmlFor="position">Position:</label>
+          <br />
+          <input onChange={onChange} name="position" id="position" />
 
-                <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: </div>
-                <button onClick={onSubmit}>Submit Smurf</button>
-            </form>
-        </section>);
-}
+          <label htmlFor="nickname">Nickname:</label>
+          <br />
+          <input onChange={onChange} name="nickname" id="nickname" />
 
-const mapStateToProps = state => {
-    return{ 
-        smurfs: state.smurfs
-    }
-}
-export default connect( mapStateToProps, { postSmurf })(AddForm);
+          <label htmlFor="description">Description:</label>
+          <br />
+          <input onChange={onChange} name="description" id="description" />
+        </div>
+
+        <div
+          data-testid="errorAlert"
+          className="alert alert-danger"
+          role="alert"
+        >
+          Error:{" "}
+        </div>
+        <button onClick={onSubmit}>Submit Smurf</button>
+      </form>
+    </section>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    error: state.error,
+  };
+};
+export default connect(mapStateToProps, { postSmurf })(AddForm);
 
 //Task List:
 //1. Add in all necessary import components and library methods.

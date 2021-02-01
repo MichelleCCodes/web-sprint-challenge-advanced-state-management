@@ -29,10 +29,11 @@ const reducer = (state=initialState, action)=>{
             isFetching: false
         });
         case(POST_SMURF):
-            return({
-                ...state, 
-                smurfs: [...state.smurfs, action.payload]
-            })
+        return({
+            ...state,
+            isFetching: false, 
+            smurfs: action.payload
+        })
         default:
             return state;
     }

@@ -2,6 +2,7 @@ import React from 'react';
 
 function Smurf(props) {
 const {smurf} = props
+console.log(smurf)
         return(
         <div data-testid="smurf" className="card">
         <h1>Pleasure to introduce {smurf.name}</h1>

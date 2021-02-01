@@ -4,6 +4,7 @@ export const FETCH_SMURFS_START = "FETCH_SMURFS_START";
 export const FETCH_SMURFS_FAIL = "FETCH_SMURFS_FAIL"; 
 export const FETCH_SMURFS_SUCCESS = "FETCH_SMURFS_SUCCESS"; 
 export const POST_SMURF = "POST_SMURF"; 
+export const POST_SMURF_FAIL = "POST_SMURF_FAIL"
 
 export const getSmurfs = () => dispatch => {
     dispatch({ type:FETCH_SMURFS_START});
@@ -17,8 +18,16 @@ export const getSmurfs = () => dispatch => {
         });
 }
 
-export const postSmurf = (name, position, description) => {
-return ({type: POST_SMURF, payload: {name, position, description}});
+export const postSmurf = (smurfDetails) => (dispatch) => {
+    axios
+    .post("http://localhost:3333/smurfs", smurfDetails)
+    .then(res=> {
+        console.log('inside postSmurf actions', res.data)
+        dispatch({type: POST_SMURF, payload: res.data});
+    })
+    .catch( err => {
+        dispatch({type: POST_SMURF_FAIL, payload: err});
+    });
 }
 
 //Task List:
@@ -35,4 +44,3 @@ return ({type: POST_SMURF, payload: {name, position, description}});
 //              - return action object setting error text
 //4. Any other actions you deem nessiary to complete application.
 
-//WHAT'S THE PAYLOAD FOR POSTING??
